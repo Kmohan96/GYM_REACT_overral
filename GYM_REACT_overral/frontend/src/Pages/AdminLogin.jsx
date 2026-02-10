@@ -12,7 +12,7 @@ function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await api.post("/token/", {   // ✅ FIXED PATH
+      const res = await api.post("/api/token/", {   // ✅ MATCHES YOUR BASE URL
         username,
         password,
       });

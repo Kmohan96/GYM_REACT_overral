@@ -8,27 +8,14 @@ function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [trainerData, setTrainerData] = useState({});
 
-  // 🔹 Load users
+  // Load users
   useEffect(() => {
     api.get("/api/admin/users/")
       .then(res => setUsers(res.data.users))
       .catch(() => alert("Failed to load users"));
   }, []);
 
-  // 🔹 Approve user (POST, not GET)
-  const approveUser = async (id) => {
-    try {
-      await api.post("/api/admin/users/approve/", { user_id: id });
-      alert("User approved");
-
-      const updated = await api.get("/api/admin/users/");
-      setUsers(updated.data.users);
-    } catch {
-      alert("Approval failed");
-    }
-  };
-
-  // 🔹 Handle trainer form input
+  // Handle trainer input
   const handleTrainerChange = (userId, field, value) => {
     setTrainerData(prev => ({
       ...prev,
@@ -39,24 +26,29 @@ function AdminUsers() {
     }));
   };
 
-  // 🔹 Create trainer (JSON, JWT-safe)
+  // Create trainer + approve user (ONE STEP)
   const createTrainer = async (user) => {
     const data = trainerData[user.id];
 
-    if (!data?.trainer_id || !data?.password) {
-      alert("Enter trainer ID and password");
+    if (!data?.trainer_id) {
+      alert("Enter trainer ID");
       return;
     }
 
     try {
       const res = await api.post("/api/accounts/trainer/create/", {
         username: user.username,
-        password: data.password,
         trainer_id: data.trainer_id,
       });
 
       alert(res.data.message);
-    } catch {
+
+      // Refresh users list
+      const updated = await api.get("/api/admin/users/");
+      setUsers(updated.data.users);
+
+    } catch (err) {
+      console.log(err.response?.data);
       alert("Trainer creation failed");
     }
   };
@@ -77,9 +69,7 @@ function AdminUsers() {
                 <th>Username</th>
                 <th>Goal</th>
                 <th>Status</th>
-                <th>Approve</th>
                 <th>Trainer ID</th>
-                <th>Password</th>
                 <th>Create Trainer</th>
               </tr>
             </thead>
@@ -92,14 +82,6 @@ function AdminUsers() {
                   <td>{user.approved ? "Approved" : "Pending"}</td>
 
                   <td>
-                    {!user.approved && (
-                      <button onClick={() => approveUser(user.id)}>
-                        Approve
-                      </button>
-                    )}
-                  </td>
-
-                  <td>
                     <input
                       placeholder="T001"
                       onChange={(e) =>
@@ -109,18 +91,8 @@ function AdminUsers() {
                   </td>
 
                   <td>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      onChange={(e) =>
-                        handleTrainerChange(user.id, "password", e.target.value)
-                      }
-                    />
-                  </td>
-
-                  <td>
                     <button onClick={() => createTrainer(user)}>
-                      Create Trainer
+                      Approve + Create Trainer
                     </button>
                   </td>
                 </tr>

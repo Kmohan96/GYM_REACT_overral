@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://gym-react-overral-1.onrender.com/api", // ✅ FIXED
+  baseURL: "https://gym-react-overral-1.onrender.com/", // ✅ FIXED
   headers: {
     "Content-Type": "application/json",
   },

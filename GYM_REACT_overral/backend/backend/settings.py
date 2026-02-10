@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
     'rest_framework_simplejwt',
         # local apps
     'accounts',
@@ -132,32 +131,32 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 #aiven_original
 
-# import os
+import os
 
-# SSL_CA = os.getenv("MYSQL_SSL_CA")
+SSL_CA = os.getenv("MYSQL_SSL_CA")
 
-# ssl_ca_path = None
+ssl_ca_path = None
 
-# if SSL_CA:
-#     ssl_ca_path = "/tmp/mysql-ca.pem"
-#     with open(ssl_ca_path, "w") as f:
-#         f.write(SSL_CA.replace("\\n", "\n"))
+if SSL_CA:
+    ssl_ca_path = "/tmp/mysql-ca.pem"
+    with open(ssl_ca_path, "w") as f:
+        f.write(SSL_CA.replace("\\n", "\n"))
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT', '3306'),
-#         'OPTIONS': (
-#             {'ssl': {'ca': ssl_ca_path}}
-#             if ssl_ca_path else
-#             {'ssl': False}
-#         ),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT', '3306'),
+        'OPTIONS': (
+            {'ssl': {'ca': ssl_ca_path}}
+            if ssl_ca_path else
+            {'ssl': False}
+        ),
+    }
+}
 # aiven_original
 
 # DATABASES={
@@ -213,26 +212,26 @@ SIMPLE_JWT = {
 }
 
 # --------------local
-import os
-from pathlib import Path
+# import os
+# from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-SSL_CA_FILE = BASE_DIR / "aiven_ca.pem"
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT", "3306"),
-        "OPTIONS": {
-            "ssl": {
-                "ca": SSL_CA_FILE
-            }
-        },
-    }
-}
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# SSL_CA_FILE = BASE_DIR / "aiven_ca.pem"
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD": os.getenv("DB_PASSWORD"),
+#         "HOST": os.getenv("DB_HOST"),
+#         "PORT": os.getenv("DB_PORT", "3306"),
+#         "OPTIONS": {
+#             "ssl": {
+#                 "ca": SSL_CA_FILE
+#             }
+#         },
+#     }
+# }
 # ------------------------local
 
 

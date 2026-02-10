@@ -12,19 +12,20 @@ function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await api.post("/api/token/", {
+      const res = await api.post("/token/", {   // ✅ FIXED PATH
         username,
         password,
       });
 
-      // ✅ SAVE JWT
+      // Save JWT tokens
       localStorage.setItem("access", res.data.access);
       localStorage.setItem("refresh", res.data.refresh);
 
-      // ✅ redirect
+      // Redirect after success
       window.location.href = "/admin-dashboard";
     } catch (err) {
-      alert("Invalid username or password");
+      console.log("Login error:", err.response?.data);
+      alert(err.response?.data?.detail || "Invalid username or password");
     } finally {
       setLoading(false);
     }

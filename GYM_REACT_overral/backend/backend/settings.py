@@ -130,7 +130,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 #aiven_original
 
-# import os
+import os
 
 SSL_CA = os.getenv("MYSQL_SSL_CA")
 

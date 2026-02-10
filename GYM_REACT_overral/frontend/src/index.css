@@ -1,0 +1,152 @@
+/* ================================
+   ROOT THEME VARIABLES
+   ================================ */
+
+:root {
+  --font-main: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --bg-dark: #0f172a;
+  --bg-light: #f8fafc;
+
+  --text-dark: #e5e7eb;
+  --text-light: #1f2933;
+
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.3);
+
+  font-family: var(--font-main);
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, #020617, #0f172a);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================
+   RESET
+   ================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================================
+   BODY
+   ================================ */
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: inherit;
+  color: inherit;
+  display: block;
+}
+
+/* ================================
+   LINKS
+   ================================ */
+
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* ================================
+   HEADINGS
+   ================================ */
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+/* ================================
+   BUTTONS
+   ================================ */
+
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 0.65em 1.4em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background: linear-gradient(135deg, var(--primary), #9333ea);
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.45);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.35);
+}
+
+/* ================================
+   FORMS (GLOBAL)
+   ================================ */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* ================================
+   LIGHT MODE SUPPORT
+   ================================ */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--text-light);
+    background: linear-gradient(135deg, #f1f5f9, #e0e7ff);
+  }
+
+  a {
+    color: #4338ca;
+  }
+
+  a:hover {
+    color: #3730a3;
+  }
+
+  button {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  }
+}

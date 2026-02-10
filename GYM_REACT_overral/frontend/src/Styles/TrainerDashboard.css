@@ -1,0 +1,346 @@
+/* ================================
+   GLOBAL RESET
+   ================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================================
+   MAIN LAYOUT
+   ================================ */
+
+.trainer-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #0f2027,
+    #203a43,
+    #2c5364
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 14s ease infinite;
+  color: #ecf0f1;
+  font-family: "Segoe UI", system-ui, -apple-system;
+}
+
+.trainer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  animation: fadeIn 0.9s ease;
+}
+
+/* ================================
+   BASE CARD STYLE
+   ================================ */
+
+.trainer-card,
+.sessions-card,
+.updates-feed-card,
+.actions-card {
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow:
+    0 25px 45px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  margin-bottom: 26px;
+  color: #1f2933;
+  animation: slideUp 0.8s ease forwards;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* hover lift */
+.trainer-card:hover,
+.sessions-card:hover,
+.updates-feed-card:hover,
+.actions-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 35px 65px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* ================================
+   HEADINGS
+   ================================ */
+
+.trainer-card h2,
+.sessions-card h3,
+.updates-feed-card h3,
+.actions-card h3 {
+  margin-bottom: 18px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f3b4d;
+  position: relative;
+}
+
+/* underline */
+.trainer-card h2::after,
+.sessions-card h3::after,
+.updates-feed-card h3::after,
+.actions-card h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #1d4ed8, #9333ea);
+}
+
+/* ================================
+   NO USERS TEXT
+   ================================ */
+
+.no-users {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ================================
+   TRAINER USER LIST
+   ================================ */
+
+.trainer-user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.trainer-user-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: transform 0.25s ease;
+}
+
+.trainer-user-list li:hover {
+  transform: translateX(6px);
+}
+
+/* ================================
+   STATS GRID
+   ================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card h4 {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================================
+   SESSIONS LIST
+   ================================ */
+
+.sessions-list {
+  list-style: none;
+  padding: 0;
+}
+
+.session-item {
+  display: grid;
+  grid-template-columns: 0.6fr 1fr 1fr 0.8fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  transition: background 0.25s ease;
+}
+
+.session-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.session-item.status-completed {
+  opacity: 0.65;
+}
+
+.session-time,
+.session-client,
+.session-type,
+.session-status {
+  padding: 4px 0;
+}
+
+/* ================================
+   UPDATES FEED
+   ================================ */
+
+.updates-feed {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.update-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: transform 0.25s ease;
+}
+
+.update-item:hover {
+  transform: translateX(6px);
+}
+
+.update-item:last-child {
+  border-bottom: none;
+}
+
+/* ================================
+   QUICK ACTIONS
+   ================================ */
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.action-btn {
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(99, 102, 241, 0.45);
+}
+
+/* ================================
+   FORM STYLES
+   ================================ */
+
+.trainer-update-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.trainer-update-form input,
+.trainer-update-form textarea {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.trainer-update-form input:focus,
+.trainer-update-form textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
+}
+
+.trainer-update-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.trainer-update-form button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.trainer-update-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(34, 197, 94, 0.45);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 768px) {
+  .stats-grid,
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .session-item {
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.9rem;
+  }
+}
+
+/* ================================
+   ANIMATIONS
+   ================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(35px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

@@ -143,6 +143,7 @@ form button[type="submit"] {
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  
 }
 
 form button[type="submit"]:hover {

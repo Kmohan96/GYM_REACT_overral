@@ -56,7 +56,7 @@ function UserLogin() {
           border: "2px solid #1d2671",
           borderRadius: "12px",
           padding: "20px",
-          minHeight: "300px",
+          minHeight: "380px",
         }}
       >
         <form onSubmit={handleLogin}>
@@ -76,7 +76,7 @@ function UserLogin() {
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
           />
-
+          
           <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
